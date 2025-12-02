@@ -1,0 +1,26 @@
+# vim:ft=plumed
+
+MOLINFO STRUCTURE=diala.pdb
+phi: TORSION ATOMS=5,7,9,15
+psi: TORSION ATOMS=7,9,15,17
+
+metad: METAD ...
+  ARG=phi
+  PACE=500
+  HEIGHT=1.2
+  SIGMA=0.1
+  BIASFACTOR=10
+  # Gaussians will be written to file and also stored on grid 
+  FILE=HILLS GRID_MIN=-pi GRID_MAX=pi 
+...
+
+...
+
+# Print both collective variables on COLVAR file every 10 steps
+PRINT ARG=* FILE=COLVAR STRIDE=10 
+
+#PRINT FMT=%g STRIDE=500 FILE=COLVAR ARG=*
+
+
+#ENDPLUMED
+
